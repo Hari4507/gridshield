@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+
+  gridshield:
+    build: ./gridshield
+    container_name: gridshield
+    ports:
+      - "5050:5000"
+    networks:
+      - gridnet
+    depends_on:
+      - plc1
+      - plc2
+      - plc3
+
+  scada:
+    build: ./scada
+    container_name: scada
+    depends_on:
+      - gridshield
+    networks:
+      - gridnet
+    stdin_open: true
+    tty: true
+
+  plc1:
+    build: ./plc
+    container_name: plc1
+    networks:
+      - gridnet
+
+  plc2:
+    build: ./plc
+    container_name: plc2
+    networks:
+      - gridnet
+
+  plc3:
+    build: ./plc
+    container_name: plc3
+    networks:
+      - gridnet
+
+
+networks:
+  gridnet:
+    driver: bridge
