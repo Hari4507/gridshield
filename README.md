@@ -69,7 +69,6 @@ These protocols are widely used in **SCADA systems and smart grid automation**.
 Commands are validated against safety constraints.
 
 Example rule:
-
 Grid control values must remain within safe operational limits
 If the command violates the rule it is **blocked immediately**.
 
@@ -84,7 +83,6 @@ Some commands may not directly violate rules but still appear suspicious.
 These commands are flagged as anomalies.
 
 Example:
-
 ANOMALY → dnp3 grid 2 value 850
 This helps detect **False Data Injection (FDI) attacks** or unusual behavior in the grid.
 
